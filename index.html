@@ -7,6 +7,9 @@
   <meta name="theme-color" content="#100d1f">
   <link rel="icon" type="image/webp" href="assets/games/agatio-icon.webp">
   <link rel="apple-touch-icon" href="assets/games/agatio-icon.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&amp;display=swap" rel="stylesheet">
   <title>Agatio Games | Small games. Big moments.</title>
   <style>
     :root { --ink:#fbf9ff; --muted:#c8c1d5; --line:rgba(255,255,255,.13); --violet:#b69cff; --gold:#ffd65c; --surface:#171226; }
@@ -19,15 +22,21 @@
     .hero::before { position:absolute; z-index:-2; inset:0; background:linear-gradient(90deg,rgba(11,8,27,.97) 0%,rgba(15,10,34,.86) 32%,rgba(16,11,31,.25) 69%,rgba(10,8,23,.24)),url('assets/games/agatio-hero-v2.webp') center/cover; content:""; }
     .hero::after { position:absolute; z-index:-1; right:-16vw; bottom:-36vw; width:72vw; height:72vw; border-radius:50%; background:rgba(113,76,255,.23); filter:blur(100px); content:""; }
     header { display:flex; align-items:center; justify-content:space-between; padding:25px 0; }
-    .brand { display:flex; align-items:center; gap:11px; font-weight:850; letter-spacing:-.045em; text-decoration:none; }
+    .brand { display:flex; align-items:center; gap:11px; font-family:"Bricolage Grotesque",Inter,ui-sans-serif,system-ui,sans-serif; font-weight:800; letter-spacing:-.035em; text-decoration:none; }
     .brand img { width:39px; height:39px; border:1px solid rgba(255,255,255,.27); border-radius:12px; object-fit:cover; box-shadow:0 7px 20px rgba(0,0,0,.28); }
-    .contact { border:1px solid var(--line); border-radius:999px; padding:10px 15px; background:rgba(20,15,42,.44); font-size:.88rem; font-weight:700; text-decoration:none; backdrop-filter:blur(8px); transition:background .2s ease,transform .2s ease; }
-    .contact:hover { background:rgba(255,255,255,.14); transform:translateY(-1px); }
+    .header-actions { display:flex; align-items:center; gap:9px; }
+    .mobile-label { display:none; }
+    .header-support { border:1px solid rgba(255,255,255,.2); border-radius:999px; padding:10px 14px; color:#f1edf6; background:rgba(20,15,42,.32); font-size:.84rem; font-weight:750; text-decoration:none; backdrop-filter:blur(8px); cursor:pointer; transition:color .2s ease,background .2s ease,border-color .2s ease,transform .2s ease; }
+    .header-support:hover { border-color:rgba(255,214,92,.48); color:var(--gold); background:rgba(20,15,42,.52); transform:translateY(-1px); }
+    .header-support:focus-visible,.contact:focus-visible { outline:3px solid var(--gold); outline-offset:3px; }
+    .contact { border:1px solid rgba(182,156,255,.36); border-radius:999px; padding:10px 15px; background:rgba(91,64,150,.32); font-size:.88rem; font-weight:750; text-decoration:none; box-shadow:0 7px 22px rgba(0,0,0,.15); backdrop-filter:blur(8px); transition:background .2s ease,border-color .2s ease,transform .2s ease; }
+    .contact:hover { border-color:rgba(182,156,255,.58); background:rgba(112,80,181,.46); transform:translateY(-1px); }
     .hero-layout { display:flex; align-items:center; min-height:530px; padding:30px 0 80px; }
     .hero-copy { display:flex; flex-direction:column; justify-content:center; }
     .eyebrow { display:flex; align-items:center; gap:9px; margin:0 0 17px; color:var(--gold); font-size:.78rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
     .eyebrow::before { width:8px; height:8px; border-radius:50%; background:currentColor; box-shadow:0 0 0 5px rgba(255,214,92,.15); content:""; }
-    h1 { max-width:720px; margin:0; font-size:clamp(3.4rem,7vw,6.45rem); line-height:.92; letter-spacing:-.075em; text-wrap:balance; }
+    h1,h2,.game-content h3 { font-family:"Bricolage Grotesque",Inter,ui-sans-serif,system-ui,sans-serif; }
+    h1 { max-width:720px; margin:0; font-size:clamp(3.4rem,7vw,6.45rem); line-height:.92; letter-spacing:-.055em; text-wrap:balance; }
     h1 span { color:var(--gold); }
     .intro { max-width:535px; margin:27px 0 0; color:#e5e0ee; font-size:clamp(1.05rem,2vw,1.2rem); line-height:1.6; }
     .button { display:inline-flex; align-items:center; justify-content:center; gap:9px; width:max-content; min-height:50px; margin-top:30px; padding:0 19px; color:#24172d; background:var(--gold); border-radius:999px; font-size:.96rem; font-weight:830; text-decoration:none; box-shadow:0 10px 30px rgba(0,0,0,.2); transition:transform .2s ease,box-shadow .2s ease; }
@@ -38,12 +47,13 @@
     .trust-item:first-child { border-left:0; }
     .trust-icon { display:grid; flex:0 0 auto; width:35px; height:35px; place-items:center; border-radius:11px; color:#251a36; background:var(--gold); font-size:1.1rem; font-weight:900; }
     .trust-item strong { display:block; color:var(--ink); font-size:.93rem; }
-    .games { position:relative; padding:88px 0 85px; overflow:hidden; background:radial-gradient(circle at 88% 0%,#2c2450 0,transparent 27%),radial-gradient(circle at 8% 66%,#21173a 0,transparent 25%),#100d1f; }
+    .games { position:relative; padding:58px 0 85px; overflow:hidden; background:linear-gradient(180deg,rgba(68,52,111,.28),transparent 170px),radial-gradient(circle at 88% 0%,#2c2450 0,transparent 27%),radial-gradient(circle at 8% 66%,#21173a 0,transparent 25%),#100d1f; }
     .games::before { position:absolute; inset:0; opacity:.3; background-image:radial-gradient(rgba(220,204,255,.36) .65px,transparent .65px); background-size:18px 18px; mask-image:linear-gradient(to bottom,transparent,black 16%,black 87%,transparent); content:""; pointer-events:none; }
-    .games .shell { position:relative; }
+    .games::after { position:absolute; top:0; left:50%; width:min(760px,72vw); height:1px; background:linear-gradient(90deg,transparent,rgba(255,214,92,.58),transparent); transform:translateX(-50%); content:""; }
+    .games .shell { position:relative; z-index:1; }
     .section-heading { display:flex; align-items:end; justify-content:space-between; gap:24px; margin-bottom:28px; }
     .section-heading p { margin:0 0 9px; color:var(--violet); font-size:.78rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
-    h2 { margin:0; font-size:clamp(2.2rem,5vw,4.2rem); line-height:.95; letter-spacing:-.07em; }
+    h2 { margin:0; font-size:clamp(2.2rem,5vw,4.2rem); line-height:.95; letter-spacing:-.05em; }
     .section-heading .section-note { max-width:290px; margin:0; color:var(--muted); font-size:.98rem; font-weight:600; letter-spacing:0; line-height:1.5; text-transform:none; }
     .game-list { display:grid; gap:25px; }
     .game-card { --accent:var(--gold); --card-bg:#22182d; display:grid; grid-template-columns:minmax(310px,1.2fr) minmax(0,1fr); min-height:326px; overflow:hidden; border:1px solid var(--line); border-radius:25px; background:linear-gradient(125deg,var(--card-bg),#171226 72%); box-shadow:0 22px 58px rgba(0,0,0,.21); }
@@ -59,7 +69,7 @@
     .tag { margin:0 0 13px; color:var(--accent); font-size:.73rem; font-weight:850; letter-spacing:.12em; text-transform:uppercase; }
     .featured-label { display:inline-flex; align-items:center; gap:6px; margin:0 0 12px; padding:6px 9px; border-radius:999px; color:#24172d; background:var(--gold); font-size:.66rem; font-weight:900; letter-spacing:.08em; text-transform:uppercase; }
     .featured-label::before { width:6px; height:6px; border-radius:50%; background:#e84c21; content:""; }
-    .game-content h3 { margin:0; font-size:clamp(1.65rem,3vw,2.5rem); line-height:1; letter-spacing:-.06em; }
+    .game-content h3 { margin:0; font-size:clamp(1.65rem,3vw,2.5rem); line-height:1; letter-spacing:-.04em; }
     .game-content p:not(.tag) { margin:16px 0 24px; color:var(--muted); line-height:1.53; }
     .store-button { display:inline-flex; align-items:center; gap:9px; min-height:43px; padding:0 15px 0 13px; border:1px solid color-mix(in srgb,var(--accent) 62%,transparent); border-radius:12px; color:#171226; background:var(--accent); font-size:.86rem; font-weight:850; text-decoration:none; box-shadow:0 8px 20px rgba(0,0,0,.18); transition:transform .2s ease,filter .2s ease; }
     .store-button:hover { transform:translateY(-2px); filter:brightness(1.06); }
@@ -69,7 +79,8 @@
     .footer-links { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:17px; }
     .footer-links a { text-decoration:none; }
     .footer-links a:hover { color:var(--ink); }
-    @media (max-width:760px) { .shell { width:min(100% - 32px,1160px); } .hero { min-height:auto; } .hero::before { background-position:62% center; background-image:linear-gradient(90deg,rgba(11,8,27,.93),rgba(13,9,29,.7)),url('assets/games/agatio-hero-v2.webp'); } .hero-layout { min-height:0; padding:69px 0 68px; } h1 { font-size:clamp(3.25rem,15vw,4.6rem); } .trust { margin-top:-31px; } .trust-inner { grid-template-columns:1fr; } .trust-item { min-height:70px; padding:15px 19px; border-top:1px solid var(--line); border-left:0; } .trust-item:first-child { border-top:0; } .games { padding:76px 0 63px; } .section-heading { align-items:start; flex-direction:column; } .game-card { grid-template-columns:1fr; } .game-art { min-height:225px; } .game-content { padding:27px 108px 27px 27px; } .game-icon { top:24px; right:25px; width:58px; height:58px; } footer { grid-template-columns:1fr; align-items:flex-start; } .footer-statement { text-align:left; } .footer-links { justify-content:flex-start; } }
+    @media (max-width:760px) { .shell { width:min(100% - 32px,1160px); } .hero { min-height:auto; } .hero::before { background-position:62% center; background-image:linear-gradient(90deg,rgba(11,8,27,.93),rgba(13,9,29,.7)),url('assets/games/agatio-hero-v2.webp'); } .hero-layout { min-height:0; padding:69px 0 68px; } h1 { font-size:clamp(3.25rem,15vw,4.6rem); } .trust { margin-top:-31px; } .trust-inner { grid-template-columns:1fr; } .trust-item { min-height:70px; padding:15px 19px; border-top:1px solid var(--line); border-left:0; } .trust-item:first-child { border-top:0; } .games { padding:52px 0 63px; } .section-heading { align-items:start; flex-direction:column; } .game-card { grid-template-columns:1fr; } .game-art { min-height:225px; } .game-content { padding:27px 108px 27px 27px; } .game-icon { top:24px; right:25px; width:58px; height:58px; } footer { grid-template-columns:1fr; align-items:flex-start; } .footer-statement { text-align:left; } .footer-links { justify-content:flex-start; } }
+    @media (max-width:440px) { header { padding:18px 0; } .brand { gap:7px; font-size:.78rem; } .brand img { width:34px; height:34px; } .header-actions { gap:6px; } .header-support { padding:8px 9px; font-size:.71rem; } .contact { padding:8px 10px; font-size:.71rem; } .desktop-label { display:none; } .mobile-label { display:inline; } }
     @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition-duration:.01ms !important; } }
   </style>
 </head>
@@ -77,8 +88,8 @@
   <section class="hero">
     <div class="shell">
       <header>
-        <a class="brand" href="/" aria-label="Agatio Games home"><img src="assets/games/agatio-icon.webp" alt="">Agatio Games</a>
-        <a class="contact" href="mailto:development@agatiogames.pl">Get in touch</a>
+        <a class="brand" href="/" aria-label="Agatio Games home"><img src="assets/games/agatio-icon.webp" alt=""><span>Agatio Games</span></a>
+        <nav class="header-actions" aria-label="Contact options"><a class="header-support" href="support/index.html"><span class="desktop-label">Get Support</span><span class="mobile-label">Support</span></a><a class="contact" href="mailto:development@agatiogames.pl"><span class="desktop-label">Get in touch</span><span class="mobile-label">Contact</span></a></nav>
       </header>
       <div class="hero-layout">
         <div class="hero-copy">
@@ -89,15 +100,14 @@
         </div>
       </div>
     </div>
+    <aside class="trust shell" aria-label="Agatio Games studio details">
+      <div class="trust-inner">
+        <div class="trust-item"><span class="trust-icon" aria-hidden="true">✦</span><span><strong>Small studio. Big care.</strong>Every game is made to feel good in your hands.</span></div>
+        <div class="trust-item"><span class="trust-icon" aria-hidden="true">▶</span><span><strong>Games for mobile</strong>Built for the moments in between.</span></div>
+        <div class="trust-item"><span class="trust-icon" aria-hidden="true">↻</span><span><strong>Designed to return to</strong>Easy to pick up, rewarding to master.</span></div>
+      </div>
+    </aside>
   </section>
-
-  <aside class="trust shell" aria-label="Agatio Games studio details">
-    <div class="trust-inner">
-      <div class="trust-item"><span class="trust-icon" aria-hidden="true">✦</span><span><strong>Small studio. Big care.</strong>Every game is made to feel good in your hands.</span></div>
-      <div class="trust-item"><span class="trust-icon" aria-hidden="true">▶</span><span><strong>Games for mobile</strong>Built for the moments in between.</span></div>
-      <div class="trust-item"><span class="trust-icon" aria-hidden="true">↻</span><span><strong>Designed to return to</strong>Easy to pick up, rewarding to master.</span></div>
-    </div>
-  </aside>
 
   <main>
     <section class="games" id="games">
@@ -108,15 +118,15 @@
         </div>
         <div class="game-list">
           <article class="game-card featured">
-            <div class="game-art"><img class="feature" src="assets/games/embers-rest-feature.webp" alt="Ember's Rest: Idle Defense" loading="lazy"></div>
+            <div class="game-art"><img class="feature" src="assets/games/embers-rest-feature-v2.webp" alt="" loading="lazy"></div>
             <div class="game-content"><img class="game-icon" src="assets/games/embers-rest-icon.webp" alt="" loading="lazy"><span class="featured-label">Featured game</span><p class="tag">Android · Coming to iOS</p><h3>Ember's Rest:<br>Idle Defense</h3><p>Build your village by day and survive enemy waves by night in an idle tower-defense strategy game.</p><a class="store-button" href="https://play.google.com/store/apps/details?id=com.embersrest.game" target="_blank" rel="noopener noreferrer">Get it on Google Play</a></div>
           </article>
           <article class="game-card">
-            <div class="game-art"><img class="feature" src="assets/games/kingdom-cutter-feature.webp" alt="Kingdom Cutter: Cut & Conquer" loading="lazy"></div>
+            <div class="game-art"><img class="feature" src="assets/games/kingdom-cutter-feature-v2.webp" alt="" loading="lazy"></div>
             <div class="game-content"><img class="game-icon" src="assets/games/kingdom-cutter-icon.webp" alt="" loading="lazy"><p class="tag">Android</p><h3>Kingdom Cutter:<br>Cut &amp; Conquer</h3><p>Capture territory, evade monsters, and rebuild a medieval kingdom in a fast arcade strategy game.</p><a class="store-button" href="https://play.google.com/store/apps/details?id=com.kingdomcutter.game" target="_blank" rel="noopener noreferrer">Get it on Google Play</a></div>
           </article>
           <article class="game-card">
-            <div class="game-art"><img class="feature" src="assets/games/potion-brewer-feature.webp" alt="Potion Brewer: Alchemist Idle" loading="lazy"></div>
+            <div class="game-art"><img class="feature" src="assets/games/potion-brewer-feature.webp" alt="" loading="lazy"></div>
             <div class="game-content"><img class="game-icon" src="assets/games/potion-brewer-icon.webp" alt="" loading="lazy"><p class="tag">Android</p><h3>Potion Brewer:<br>Alchemist Idle</h3><p>Brew potions, automate your workshop, and grow from novice to master alchemist in a relaxing idle clicker.</p><a class="store-button" href="https://play.google.com/store/apps/details?id=com.potionbrewery.game" target="_blank" rel="noopener noreferrer">Get it on Google Play</a></div>
           </article>
         </div>

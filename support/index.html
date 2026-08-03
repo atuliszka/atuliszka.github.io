@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Get help with an Agatio Games title or send a gameplay question.">
+  <meta name="theme-color" content="#100d1f">
+  <link rel="icon" type="image/webp" href="../assets/games/agatio-icon.webp">
+  <link rel="apple-touch-icon" href="../assets/games/agatio-icon.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&amp;display=swap" rel="stylesheet">
+  <title>Game Support | Agatio Games</title>
+  <style>
+    :root { --ink:#fbf9ff; --muted:#c8c1d5; --line:rgba(255,255,255,.13); --violet:#b69cff; --gold:#ffd65c; --surface:#171226; }
+    * { box-sizing:border-box; }
+    body { min-width:320px; min-height:100vh; margin:0; color:var(--ink); background:radial-gradient(circle at 82% 4%,#2c2450 0,transparent 29%),radial-gradient(circle at 6% 72%,#21173a 0,transparent 27%),#100d1f; font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; -webkit-font-smoothing:antialiased; }
+    a { color:inherit; }
+    .shell { width:min(900px,calc(100% - 48px)); margin:auto; }
+    header { display:flex; align-items:center; justify-content:space-between; padding:25px 0; }
+    .brand { display:flex; align-items:center; gap:11px; font-family:"Bricolage Grotesque",Inter,ui-sans-serif,system-ui,sans-serif; font-weight:800; letter-spacing:-.035em; text-decoration:none; }
+    .brand img { width:39px; height:39px; border:1px solid rgba(255,255,255,.27); border-radius:12px; object-fit:cover; box-shadow:0 7px 20px rgba(0,0,0,.28); }
+    .back { color:var(--muted); font-size:.88rem; font-weight:700; text-underline-offset:4px; }
+    main { padding:55px 0 88px; }
+    .eyebrow { display:flex; align-items:center; gap:9px; margin:0 0 16px; color:var(--gold); font-size:.78rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+    .eyebrow::before { width:8px; height:8px; border-radius:50%; background:currentColor; box-shadow:0 0 0 5px rgba(255,214,92,.15); content:""; }
+    h1,h2 { font-family:"Bricolage Grotesque",Inter,ui-sans-serif,system-ui,sans-serif; }
+    h1 { margin:0; font-size:clamp(3rem,8vw,5.6rem); line-height:.94; letter-spacing:-.05em; }
+    .intro { max-width:650px; margin:22px 0 36px; color:var(--muted); font-size:clamp(1rem,2vw,1.15rem); line-height:1.65; }
+    .support-card { padding:clamp(24px,5vw,42px); border:1px solid rgba(255,255,255,.16); border-radius:24px; background:rgba(23,18,38,.9); box-shadow:0 25px 70px rgba(0,0,0,.27); backdrop-filter:blur(14px); }
+    .card-heading { display:flex; align-items:end; justify-content:space-between; gap:24px; margin-bottom:27px; padding-bottom:25px; border-bottom:1px solid var(--line); }
+    h2 { margin:0; font-size:clamp(1.6rem,4vw,2.15rem); letter-spacing:-.03em; }
+    .reply-time { max-width:230px; margin:0; color:var(--muted); font-size:.8rem; line-height:1.45; text-align:right; }
+    form { display:grid; gap:21px; }
+    .fields { display:grid; grid-template-columns:1fr 1fr; gap:17px; }
+    label { display:grid; gap:8px; color:#eeeaf5; font-size:.9rem; font-weight:750; }
+    select,textarea { width:100%; border:1px solid #453b5d; border-radius:12px; color:var(--ink); background:#110d20; font:inherit; }
+    select { min-height:50px; padding:0 42px 0 14px; }
+    textarea { min-height:165px; padding:14px; line-height:1.55; resize:vertical; }
+    select:focus,textarea:focus { border-color:var(--violet); outline:3px solid rgba(182,156,255,.17); }
+    .hint { color:#9991a8; font-size:.78rem; font-weight:500; line-height:1.45; }
+    .submit { display:inline-flex; align-items:center; justify-content:center; width:max-content; min-height:50px; padding:0 20px; border:0; border-radius:999px; color:#24172d; background:var(--gold); font:inherit; font-size:.94rem; font-weight:850; box-shadow:0 10px 28px rgba(0,0,0,.22); cursor:pointer; transition:transform .2s ease,box-shadow .2s ease; }
+    .submit:hover { transform:translateY(-2px); box-shadow:0 14px 34px rgba(0,0,0,.3); }
+    .submit:focus-visible,a:focus-visible { outline:3px solid var(--violet); outline-offset:3px; }
+    .privacy,.status { margin:-8px 0 0; color:#9991a8; font-size:.78rem; line-height:1.45; }
+    .status { min-height:1.2em; color:var(--gold); }
+    .direct { margin:20px 0 0; padding:22px 26px; border:1px solid var(--line); border-radius:17px; color:var(--muted); background:rgba(255,255,255,.035); font-size:.9rem; line-height:1.55; }
+    .direct a { color:var(--gold); font-weight:750; text-underline-offset:3px; }
+    footer { padding:29px 0 38px; border-top:1px solid var(--line); color:#90889e; font-size:.82rem; text-align:center; }
+    @media (max-width:620px) { .shell { width:min(100% - 30px,900px); } main { padding:36px 0 62px; } .card-heading { align-items:start; flex-direction:column; } .reply-time { text-align:left; } .fields { grid-template-columns:1fr; } .submit { width:100%; } }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { transition-duration:.01ms !important; } }
+  </style>
+</head>
+<body>
+  <header class="shell">
+    <a class="brand" href="../index.html" aria-label="Agatio Games home"><img src="../assets/games/agatio-icon.webp" alt="">Agatio Games</a>
+    <a class="back" href="../index.html">Back to home</a>
+  </header>
+
+  <main class="shell">
+    <p class="eyebrow">Player support</p>
+    <h1>How can I help?</h1>
+    <p class="intro">Choose your game and tell me what is going on. Whether it is a gameplay question, a technical issue, or an idea, I would like to hear from you.</p>
+
+    <section class="support-card" aria-labelledby="form-title">
+      <div class="card-heading">
+        <h2 id="form-title">Ask about a game</h2>
+        <p class="reply-time">Messages are usually answered within 2–3 business days.</p>
+      </div>
+
+      <form id="support-form">
+        <div class="fields">
+          <label for="game">Game
+            <select id="game" required>
+              <option value="">Select a game</option>
+              <option>Ember's Rest: Idle Defense</option>
+              <option>Kingdom Cutter: Cut &amp; Conquer</option>
+              <option>Potion Brewer: Alchemist Idle</option>
+              <option>Another Agatio game</option>
+            </select>
+          </label>
+
+          <label for="topic">What can I help with?
+            <select id="topic" required>
+              <option value="">Select a topic</option>
+              <option>Gameplay question</option>
+              <option>Bug or technical issue</option>
+              <option>Purchase or advertisement</option>
+              <option>Feedback or suggestion</option>
+              <option>Something else</option>
+            </select>
+          </label>
+        </div>
+
+        <label for="message">Your message
+          <textarea id="message" maxlength="3000" placeholder="Tell me what happened, what you expected, and any steps that might help reproduce the issue." required></textarea>
+          <span class="hint">For technical issues, please include your device model and game version if possible.</span>
+        </label>
+
+        <button class="submit" type="submit">Continue to email</button>
+        <p class="privacy">This opens your email app with the details filled in. Nothing you enter is stored on this website.</p>
+        <p class="status" id="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <p class="direct">Prefer to write directly? Email <a href="mailto:support@agatiogames.pl?subject=Game%20support">support@agatiogames.pl</a> and include the game name in the subject.</p>
+  </main>
+
+  <footer class="shell">© 2026 Agatio Games · A solo developer in Poland</footer>
+
+  <script>
+    const form = document.querySelector('#support-form');
+    const status = document.querySelector('#form-status');
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      if (!form.reportValidity()) return;
+
+      const game = document.querySelector('#game').value;
+      const topic = document.querySelector('#topic').value;
+      const message = document.querySelector('#message').value.trim();
+      const subject = `[${game}] ${topic}`;
+      const body = [
+        `Game: ${game}`,
+        `Topic: ${topic}`,
+        '',
+        message,
+        '',
+        'Device model (optional):',
+        'Game version (optional):'
+      ].join('\n');
+
+      status.textContent = 'Opening your email app…';
+      window.location.href = `mailto:support@agatiogames.pl?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+  </script>
+</body>
+</html>
