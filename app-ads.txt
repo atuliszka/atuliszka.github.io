@@ -1,5 +1,5 @@
 google.com, pub-9020850992374326, DIRECT, f08c47fec0942fa0
-OWNERDOMAIN=agatiogames.github.io
+OWNERDOMAIN=agatiogames.pl
 ironsrc.com, 648587, Direct
 adagio.io, 1522, RESELLER
 adagio.io, 1575, RESELLER
