@@ -55,8 +55,13 @@
     .status { min-height:1.2em; color:var(--gold); }
     .direct { margin:20px 0 0; padding:22px 26px; border:1px solid var(--line); border-radius:17px; color:var(--muted); background:rgba(255,255,255,.035); font-size:.9rem; line-height:1.55; }
     .direct a { color:var(--gold); font-weight:750; text-underline-offset:3px; }
-    footer { padding:29px 0 38px; border-top:1px solid var(--line); color:#90889e; font-size:.82rem; text-align:center; }
-    @media (max-width:620px) { .shell { width:min(100% - 30px,900px); } main { padding:36px 0 62px; } .card-heading { align-items:start; flex-direction:column; } .reply-time { text-align:left; } .fields { grid-template-columns:1fr; } .submit { width:100%; } }
+    footer { display:grid; grid-template-columns:minmax(250px,1fr) auto; align-items:center; gap:32px; padding:29px 0 38px; border-top:1px solid var(--line); color:#90889e; font-size:.82rem; }
+    .footer-copy { display:grid; gap:7px; }
+    .footer-statement { color:var(--muted); line-height:1.5; }
+    .footer-links { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:17px; }
+    .footer-links a { text-decoration:none; }
+    .footer-links a:hover { color:var(--ink); }
+    @media (max-width:620px) { .shell { width:min(100% - 30px,900px); } main { padding:36px 0 62px; } .card-heading { align-items:start; flex-direction:column; } .reply-time { text-align:left; } .fields { grid-template-columns:1fr; } .submit { width:100%; } footer { grid-template-columns:1fr; align-items:start; gap:22px; } .footer-links { justify-content:flex-start; } }
     @media (prefers-reduced-motion:reduce) { *,*::before,*::after { transition-duration:.01ms !important; } }
   </style>
 </head>
@@ -116,7 +121,7 @@
     <p class="direct">Prefer to write directly? Email <a href="mailto:support@agatiogames.pl?subject=Game%20support">support@agatiogames.pl</a> and include the game name in the subject.</p>
   </main>
 
-  <footer class="shell">© 2026 Agatio Games · A solo developer in Poland</footer>
+  <footer class="shell"><div class="footer-copy"><span>© 2026 Agatio Games</span><span class="footer-statement">A solo developer in Poland, making games worth one more turn.</span></div><nav class="footer-links" aria-label="Footer links"><a href="/">Home</a><a href="/#games">Games</a><a href="/support/">Support</a><a href="https://www.tiktok.com/@agatio.games" target="_blank" rel="noopener noreferrer">TikTok ↗</a><a href="https://www.reddit.com/user/agatio_games/" target="_blank" rel="noopener noreferrer">Reddit ↗</a><a href="https://www.youtube.com/channel/UCjKIy4qZYMOo26gETGBozVA" target="_blank" rel="noopener noreferrer">YouTube ↗</a><a href="mailto:development@agatiogames.pl">Contact</a></nav></footer>
 
   <script>
     const form = document.querySelector('#support-form');
