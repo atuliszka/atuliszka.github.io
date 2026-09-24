@@ -1,6 +1,7 @@
 google.com, pub-9020850992374326, DIRECT, f08c47fec0942fa0
 OWNERDOMAIN=agatiogames.pl
 ironsrc.com, 648587, Direct
+vungle.com, 6ab562795846cac3aaf45ce9, DIRECT, c107d686becd2d77
 adagio.io, 1522, RESELLER
 adagio.io, 1575, RESELLER
 admanmedia.com, 2242, RESELLER
