@@ -1,4 +1,6 @@
 .home-hero {
+  position: relative;
+  isolation: isolate;
   --hero-overlay: linear-gradient(90deg,rgba(10,8,25,.86) 0%,rgba(10,8,25,.72) 38%,rgba(10,8,25,.22) 72%,rgba(10,8,25,.35));
   padding: 112px 0 48px;
   background:
@@ -6,6 +8,26 @@
     var(--hero-overlay),
     url('games/agatio-hero-v2.webp') center / cover,
     #100d1f;
+}
+.hero-grain { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.hero-grain > span { position: absolute; top: -48px; left: var(--x); width: var(--size); height: calc(100% + 48px); animation: grain-fall var(--fall) var(--delay) linear infinite; }
+.hero-grain > span::before { content: ""; display: block; width: 100%; aspect-ratio: 1; background: url('games/grain_icon.png') center / contain no-repeat; animation: grain-sway var(--sway) var(--delay) ease-in-out infinite alternate; }
+@keyframes grain-fall {
+  0% { transform: translateY(0); opacity: 0; }
+  8%, 82% { opacity: .55; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+@keyframes grain-sway {
+  from { transform: translate(-14px,-5px) rotate(-24deg); }
+  to { transform: translate(14px,5px) rotate(28deg); }
+}
+.home-hero.grain-paused .hero-grain > span,
+.home-hero.grain-paused .hero-grain > span::before { animation-play-state: paused; }
+.grain-toggle { position: absolute; right: 24px; bottom: 4px; min-height: 44px; padding: 8px; border: 0; color: var(--muted); background: transparent; font-size: .72rem; cursor: pointer; }
+.grain-toggle:hover { color: var(--ink); }
+@media (prefers-reduced-motion: reduce) {
+  .hero-grain, .grain-toggle { display: none; }
+  .hero-grain > span, .hero-grain > span::before { animation: none; }
 }
 .home-hero-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.1fr); align-items: center; gap: 36px; }
 .home-hero h1 { font-size: clamp(2.8rem,4.5vw,4.3rem); }
@@ -20,8 +42,6 @@
 .game-card { --accent: var(--gold); display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); overflow: hidden; border: 1px solid var(--line); border-radius: 22px; background: #171226; }
 .game-card.featured { border-color: #ffd65c66; }
 .game-card#peasant-to-king { --accent: #8edb91; }
-.game-card#kingdom-cutter { --accent: #71dbe0; }
-.game-card#potion-brewer { --accent: #d7a6ff; }
 .game-art { display: flex; align-items: center; background: #090713; }
 .game-art img { width: 100%; height: auto; }
 .game-content { position: relative; padding: 28px; }
@@ -35,6 +55,16 @@
 .store-buttons { display: flex; flex-wrap: wrap; gap: 10px; }
 .store-button { font-size: .86rem; padding-inline: 14px; }
 .game-content > .text-link { display: flex; width: max-content; }
+.older-titles { margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--line); }
+.older-titles > h3 { margin: 0 0 20px; color: var(--muted); font-size: 1.3rem; }
+.older-game-list { grid-template-columns: repeat(2,minmax(0,1fr)); }
+.older-game { display: grid; grid-template-columns: 72px minmax(0,1fr); align-items: center; gap: 20px; padding: 20px; border: 1px solid var(--line); border-radius: 16px; background: #171226; }
+.older-game#kingdom-cutter { --accent: #71dbe0; }
+.older-game#potion-brewer { --accent: #d7a6ff; }
+.older-game-icon { width: 72px; height: 72px; border: 1px solid var(--line); border-radius: 16px; }
+.older-game h4 { margin: 0; font-family: "Bricolage Grotesque",Inter,sans-serif; font-size: 1.15rem; line-height: 1.25; letter-spacing: -.025em; }
+.older-game p { margin: 6px 0 0; color: var(--muted); font-size: .85rem; line-height: 1.5; }
+.older-game .text-link { margin-top: 4px; font-size: .82rem; }
 
 @media (max-width: 760px) {
   .home-hero {
@@ -48,11 +78,14 @@
   .home-hero .hero-actions { margin-top: 20px; }
   .home-hero .hero-actions .button { flex-basis: 140px; padding-inline: 12px; font-size: .86rem; }
   .hero-trailer { width: min(100%,220px); }
+  .hero-grain > span:nth-child(even) { display: none; }
   .games { padding: 32px 0 42px; }
   .section-heading { align-items: start; flex-direction: column; gap: 16px; }
   .game-card { grid-template-columns: 1fr; }
   .game-content { padding: 24px; }
   .store-buttons .store-button { flex: 1 1 160px; }
+  .older-game-list { grid-template-columns: 1fr; }
+  .older-game { gap: 16px; padding: 16px; }
 
 }
 @media (max-width: 360px) {

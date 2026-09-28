@@ -1,5 +1,15 @@
 /* Shared, optional enhancements. Normal links work without JavaScript or analytics. */
 (() => {
+  const grainToggle = document.querySelector('.grain-toggle');
+  if (grainToggle) {
+    grainToggle.hidden = false;
+    grainToggle.addEventListener('click', () => {
+      const paused = grainToggle.closest('.home-hero').classList.toggle('grain-paused');
+      grainToggle.setAttribute('aria-pressed', String(paused));
+      grainToggle.textContent = paused ? 'Resume animation' : 'Pause animation';
+    });
+  }
+
   function track(name, details) {
     try {
       if (typeof window.gtag === 'function') window.gtag('event', name, details);
