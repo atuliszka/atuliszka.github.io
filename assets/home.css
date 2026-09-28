@@ -9,30 +9,11 @@
     url('games/agatio-hero-v2.webp') center / cover,
     #100d1f;
 }
-.hero-grain { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
-.hero-grain > span { position: absolute; top: -48px; left: var(--x); width: var(--size); height: calc(100% + 48px); animation: grain-fall var(--fall) var(--delay) linear infinite; }
-.hero-grain > span::before { content: ""; display: block; width: 100%; aspect-ratio: 1; background: url('games/grain_icon.png') center / contain no-repeat; animation: grain-sway var(--sway) var(--delay) ease-in-out infinite alternate; }
-@keyframes grain-fall {
-  0% { transform: translateY(0); opacity: 0; }
-  8%, 82% { opacity: .55; }
-  100% { transform: translateY(100%); opacity: 0; }
-}
-@keyframes grain-sway {
-  from { transform: translate(-14px,-5px) rotate(-24deg); }
-  to { transform: translate(14px,5px) rotate(28deg); }
-}
-.home-hero.grain-paused .hero-grain > span,
-.home-hero.grain-paused .hero-grain > span::before { animation-play-state: paused; }
-.grain-toggle { position: absolute; right: 24px; bottom: 4px; min-height: 44px; padding: 8px; border: 0; color: var(--muted); background: transparent; font-size: .72rem; cursor: pointer; }
-.grain-toggle:hover { color: var(--ink); }
-@media (prefers-reduced-motion: reduce) {
-  .hero-grain, .grain-toggle { display: none; }
-  .hero-grain > span, .hero-grain > span::before { animation: none; }
-}
 .home-hero-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.1fr); align-items: center; gap: 36px; }
 .home-hero h1 { font-size: clamp(2.8rem,4.5vw,4.3rem); }
 .home-hero h1 span { color: var(--gold); }
 .home-hero .hero-lead { font-size: 1.15rem; }
+.home-hero .hero-supporting { max-width: 38ch; margin: 14px 0 0; color: var(--muted); font-size: 1rem; line-height: 1.6; }
 .hero-trailer { width: min(100%,260px); justify-self: center; border-color: #ffd65c55; box-shadow: 0 18px 50px #0005; }
 .games { padding: 48px 0 60px; border-top: 1px solid var(--line); background: linear-gradient(180deg,#2c245050,transparent 200px),#100d1f; }
 .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
@@ -40,8 +21,8 @@
 .section-heading .section-note { max-width: 290px; margin: 0; color: var(--muted); font-size: .95rem; line-height: 1.5; letter-spacing: 0; text-transform: none; }
 .game-list { display: grid; gap: 24px; }
 .game-card { --accent: var(--gold); display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); overflow: hidden; border: 1px solid var(--line); border-radius: 22px; background: #171226; }
-.game-card.featured { border-color: #ffd65c66; }
-.game-card#peasant-to-king { --accent: #8edb91; }
+.game-card.featured { border-color: color-mix(in srgb,var(--accent) 40%,transparent); }
+.game-card#peasant-to-king, .home-hero .community-compact { --accent: #8edb91; }
 .game-art { display: flex; align-items: center; background: #090713; }
 .game-art img { width: 100%; height: auto; }
 .game-content { position: relative; padding: 28px; }
@@ -50,7 +31,7 @@
 .game-content h3 a { text-decoration: none; }
 .game-content h3 a:hover { color: var(--accent); }
 .tag { margin: 0 0 12px; color: var(--accent); font-size: .73rem; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
-.featured-label { display: inline-flex; margin: 0 0 12px; padding: 5px 9px; border-radius: 999px; color: #24172d; background: var(--gold); font-size: .66rem; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; }
+.featured-label { display: inline-flex; margin: 0 0 12px; padding: 5px 9px; border-radius: 999px; color: #24172d; background: var(--accent); font-size: .66rem; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; }
 .game-content p:not(.tag) { margin: 16px 0 20px; color: var(--muted); line-height: 1.6; }
 .store-buttons { display: flex; flex-wrap: wrap; gap: 10px; }
 .store-button { font-size: .86rem; padding-inline: 14px; }
@@ -78,7 +59,6 @@
   .home-hero .hero-actions { margin-top: 20px; }
   .home-hero .hero-actions .button { flex-basis: 140px; padding-inline: 12px; font-size: .86rem; }
   .hero-trailer { width: min(100%,220px); }
-  .hero-grain > span:nth-child(even) { display: none; }
   .games { padding: 32px 0 42px; }
   .section-heading { align-items: start; flex-direction: column; gap: 16px; }
   .game-card { grid-template-columns: 1fr; }

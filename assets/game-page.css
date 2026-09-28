@@ -63,6 +63,7 @@ h2 { margin: 0; font-size: clamp(2rem,4vw,3.2rem); line-height: 1.05; letter-spa
 .feature-card h3 { margin: 0; font-size: 1.35rem; letter-spacing: -.025em; }
 .feature-card p { margin: 11px 0 0; color: var(--muted); font-size: .94rem; line-height: 1.6; }
 .compact-facts { margin-top: 26px; }
+.campaign-note { max-width: 760px; margin: 24px 0 0; padding-left: 16px; border-left: 2px solid var(--accent); color: var(--muted); font-size: .94rem; line-height: 1.65; }
 .facts { display: flex; flex-wrap: wrap; gap: 22px 40px; margin: 0; }
 .fact { flex: 1 1 180px; }
 .fact dt { margin-bottom: 8px; color: var(--accent); font-size: .72rem; font-weight: 850; letter-spacing: .09em; text-transform: uppercase; }

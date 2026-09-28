@@ -1,0 +1,24 @@
+:is(.hero-grain, .page-grain) { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+:is(.hero-grain, .page-grain) > span { position: absolute; top: -48px; left: var(--x); width: var(--size); height: calc(100% + 48px); animation: grain-fall var(--fall) var(--delay) linear infinite; }
+:is(.hero-grain, .page-grain) > span::before { content: ""; display: block; width: 100%; aspect-ratio: 1; background: url('games/grain_icon.png') center / contain no-repeat; animation: grain-sway var(--sway) var(--delay) ease-in-out infinite alternate; }
+@keyframes grain-fall {
+  0% { transform: translateY(0); opacity: 0; }
+  8%, 82% { opacity: .55; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+@keyframes grain-sway {
+  from { transform: translate(-14px,-5px) rotate(-24deg); }
+  to { transform: translate(14px,5px) rotate(28deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  :is(.hero-grain, .page-grain) { display: none; }
+  :is(.hero-grain, .page-grain) > span, :is(.hero-grain, .page-grain) > span::before { animation: none; }
+}
+
+body[data-game="Peasant to King"] { position: relative; isolation: isolate; }
+.page-grain { z-index: 0; opacity: .65; }
+body[data-game="Peasant to King"] main .shell,
+body[data-game="Peasant to King"] > footer { position: relative; z-index: 1; }
+@media (max-width: 760px) {
+  :is(.hero-grain, .page-grain) > span:nth-child(even) { display: none; }
+}
