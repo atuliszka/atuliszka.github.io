@@ -1,175 +1,56 @@
 {
-    "schema_version":  1,
-    "status":  "ready",
-    "updated_at":  "2026-09-28T12:45:02Z",
-    "current":  {
-                    "data_from":  "2026-08-21",
-                    "data_through":  "2026-09-28",
-                    "players_in_the_journey":  5022,
-                    "fields_harvested_manually":  366459,
-                    "swords_forged_by_hand":  1481575,
-                    "kingdom_contracts_fulfilled":  90067,
-                    "land_events_completed":  1645,
-                    "eastern_town_siege_days_passed":  702,
-                    "great_tunnels_built":  2,
-                    "settlements_started":  0
-                },
-    "previous":  {
-                    "data_from":  "2026-08-21",
-                    "data_through":  "2026-09-27",
-                    "players_in_the_journey":  4688,
-                    "fields_harvested_manually":  341371,
-                    "swords_forged_by_hand":  1377580,
-                    "kingdom_contracts_fulfilled":  82096,
-                    "land_events_completed":  1462,
-                    "eastern_town_siege_days_passed":  618,
-                    "great_tunnels_built":  2,
-                    "settlements_started":  0
-                 },
-    "players_by_rank":  [
-                            {
-                                "rank_index":  0,
-                                "rank":  "Serf",
-                                "players":  982,
-                                "players_with_observed_promotion":  0,
-                                "inferred_serfs":  982,
-                                "percent_of_players":  19.55,
-                                "data_through":  "2026-09-28"
-                            },
-                            {
-                                "rank_index":  1,
-                                "rank":  "Peasant",
-                                "players":  947,
-                                "players_with_observed_promotion":  947,
-                                "inferred_serfs":  0,
-                                "percent_of_players":  18.86,
-                                "data_through":  "2026-09-28"
-                            },
-                            {
-                                "rank_index":  2,
-                                "rank":  "Farmer",
-                                "players":  331,
-                                "players_with_observed_promotion":  331,
-                                "inferred_serfs":  0,
-                                "percent_of_players":  6.59,
-                                "data_through":  "2026-09-28"
-                            },
-                            {
-                                "rank_index":  3,
-                                "rank":  "Steward",
-                                "players":  698,
-                                "players_with_observed_promotion":  698,
-                                "inferred_serfs":  0,
-                                "percent_of_players":  13.90,
-                                "data_through":  "2026-09-28"
-                            },
-                            {
-                                "rank_index":  4,
-                                "rank":  "Landowner",
-                                "players":  437,
-                                "players_with_observed_promotion":  437,
-                                "inferred_serfs":  0,
-                                "percent_of_players":  8.7,
-                                "data_through":  "2026-09-28"
-                            },
-                            {
-                                "rank_index":  5,
-                                "rank":  "Warden",
-                                "players":  355,
-                                "players_with_observed_promotion":  355,
-                                "inferred_serfs":  0,
-                                "percent_of_players":  7.07,
-                                "data_through":  "2026-09-28"
-                            },
-                            {
-                                "rank_index":  6,
-                                "rank":  "Bailiff",
-                                "players":  332,
-                                "players_with_observed_promotion":  332,
-                                "inferred_serfs":  0,
-                                "percent_of_players":  6.61,
-                                "data_through":  "2026-09-28"
-                            },
-                            {
-                                "rank_index":  7,
-                                "rank":  "Castellan",
-                                "players":  209,
-                                "players_with_observed_promotion":  209,
-                                "inferred_serfs":  0,
-                                "percent_of_players":  4.16,
-                                "data_through":  "2026-09-28"
-                            },
-                            {
-                                "rank_index":  8,
-                                "rank":  "Merchant",
-                                "players":  465,
-                                "players_with_observed_promotion":  465,
-                                "inferred_serfs":  0,
-                                "percent_of_players":  9.26,
-                                "data_through":  "2026-09-28"
-                            },
-                            {
-                                "rank_index":  9,
-                                "rank":  "Gentleman",
-                                "players":  209,
-                                "players_with_observed_promotion":  209,
-                                "inferred_serfs":  0,
-                                "percent_of_players":  4.16,
-                                "data_through":  "2026-09-28"
-                            },
-                            {
-                                "rank_index":  10,
-                                "rank":  "Knight",
-                                "players":  17,
-                                "players_with_observed_promotion":  17,
-                                "inferred_serfs":  0,
-                                "percent_of_players":  0.34,
-                                "data_through":  "2026-09-28"
-                            },
-                            {
-                                "rank_index":  11,
-                                "rank":  "Baron",
-                                "players":  0,
-                                "players_with_observed_promotion":  0,
-                                "inferred_serfs":  0,
-                                "percent_of_players":  0,
-                                "data_through":  "2026-09-28"
-                            },
-                            {
-                                "rank_index":  12,
-                                "rank":  "Duke",
-                                "players":  0,
-                                "players_with_observed_promotion":  0,
-                                "inferred_serfs":  0,
-                                "percent_of_players":  0,
-                                "data_through":  "2026-09-28"
-                            },
-                            {
-                                "rank_index":  13,
-                                "rank":  "King",
-                                "players":  0,
-                                "players_with_observed_promotion":  0,
-                                "inferred_serfs":  0,
-                                "percent_of_players":  0,
-                                "data_through":  "2026-09-28"
-                            },
-                            {
-                                "rank_index":  -1,
-                                "rank":  "Unknown",
-                                "players":  39,
-                                "players_with_observed_promotion":  0,
-                                "inferred_serfs":  0,
-                                "percent_of_players":  0.83,
-                                "data_through":  "2026-09-28"
-                            }
-                        ],
-    "presentation":  {
-                         "estimated_counters":  [
-                                                    "fields_harvested_manually",
-                                                    "swords_forged_by_hand",
-                                                    "kingdom_contracts_fulfilled"
-                                                ],
-                         "max_projection_days":  1,
-                         "estimate_label":  "Estimated community totals · updated weekly"
-                     }
+  "current": {
+    "data_from": "2026-08-21",
+    "data_through": "2026-09-29",
+    "players_in_the_journey": 5380,
+    "fields_harvested_manually": 390667,
+    "swords_forged_by_hand": 1585305,
+    "kingdom_contracts_fulfilled": 98754,
+    "land_events_completed": 1782,
+    "eastern_town_siege_days_passed": 782,
+    "great_tunnels_built": 3,
+    "settlements_started": 1
+  },
+  "previous": {
+    "data_from": "2026-08-21",
+    "data_through": "2026-09-28",
+    "players_in_the_journey": 5022,
+    "fields_harvested_manually": 366459,
+    "swords_forged_by_hand": 1481575,
+    "kingdom_contracts_fulfilled": 90067,
+    "land_events_completed": 1645,
+    "eastern_town_siege_days_passed": 702,
+    "great_tunnels_built": 2,
+    "settlements_started": 0
+  },
+  "players_by_rank": {
+    "data_through": "2026-09-29",
+    "counts": {
+      "Serf": 1057,
+      "Peasant": 1014,
+      "Farmer": 331,
+      "Steward": 746,
+      "Landowner": 490,
+      "Warden": 359,
+      "Bailiff": 348,
+      "Castellan": 232,
+      "Merchant": 520,
+      "Gentleman": 224,
+      "Knight": 17,
+      "Baron": 1,
+      "Duke": 0,
+      "King": 0,
+      "Unknown": 41
+    }
+  },
+  "presentation": {
+    "estimated_counters": [
+      "players_in_the_journey",
+      "fields_harvested_manually",
+      "swords_forged_by_hand",
+      "kingdom_contracts_fulfilled"
+    ],
+    "max_projection_days": 7,
+    "estimate_label": "Estimated community totals · updated weekly"
+  }
 }

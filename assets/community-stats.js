@@ -17,10 +17,6 @@ function calendarDay(value) {
   const time = Date.parse(`${value}T00:00:00Z`);
   return Number.isFinite(time) && new Date(time).toISOString().slice(0, 10) === value ? time : NaN;
 }
-function publicationTime(value) {
-  if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/.test(value)) return NaN;
-  return Number.isFinite(calendarDay(value.slice(0, 10))) ? Date.parse(value) : NaN;
-}
 function counterValue(data, key, now, reducedMotion = false) {
   const total = data.current?.[key];
   const actual = { value: isTotal(total) ? total : null, estimated: false, growing: false };
@@ -30,7 +26,7 @@ function counterValue(data, key, now, reducedMotion = false) {
       !Array.isArray(presentation?.estimated_counters) || !presentation.estimated_counters.includes(key) ||
       typeof presentation.estimate_label !== 'string' || !presentation.estimate_label.trim()) return actual;
   const gap = (calendarDay(data.current?.data_through) - calendarDay(data.previous?.data_through)) / DAY;
-  const published = publicationTime(data.updated_at);
+  const published = calendarDay(data.current?.data_through);
   const cap = presentation.max_projection_days;
   if (!(gap > 0) || !Number.isFinite(published) || !Number.isFinite(now) ||
       typeof cap !== 'number' || !Number.isFinite(cap) || cap <= 0 || total < previous) return actual;
@@ -39,14 +35,15 @@ function counterValue(data, key, now, reducedMotion = false) {
   if (!isTotal(value)) return actual;
   return { value, estimated: true, growing: total > previous && elapsed < cap };
 }
-function rankRows(rows) {
-  return (Array.isArray(rows) ? rows : []).filter(row => row && typeof row.rank === 'string')
-    .filter(row => !/^Unknown$/i.test(row.rank.trim()))
-    .sort((a, b) => (Number.isFinite(a.rank_index) ? a.rank_index : Infinity) -
-      (Number.isFinite(b.rank_index) ? b.rank_index : Infinity));
+function rankRows(report) {
+  const counts = report?.counts;
+  if (!counts || typeof counts !== 'object' || Array.isArray(counts)) return [];
+  return Object.entries(counts)
+    .filter(([rank]) => !/^Unknown$/i.test(rank.trim()))
+    .map(([rank, players]) => ({ rank, players }));
 }
 function rankPercentages(rows) {
-  const known = rankRows(rows).filter(row => !/^(Duke|King)$/i.test(row.rank.trim()));
+  const known = rows.filter(row => !/^(Unknown|Duke|King)$/i.test(row.rank.trim()));
   const result = new Map();
   if (!known.length || known.some(row => !isTotal(row.players))) return result;
   const total = known.reduce((sum, row) => sum + row.players, 0);
@@ -220,11 +217,11 @@ function init(section) {
       const response = await fetch(section.dataset.source, { credentials: 'omit', cache: 'no-cache', signal: controller.signal });
       if (!response.ok) throw new Error('Statistics request failed');
       const snapshot = await response.json();
-      if (snapshot?.status === 'awaiting_data') {
+      if (snapshot && snapshot.current === null) {
         status.textContent = 'The community ledger is awaiting its first report. Check back after the next weekly update.';
         return;
       }
-      if (snapshot?.status !== 'ready' || !snapshot.current || typeof snapshot.current !== 'object') throw new Error('Invalid report');
+      if (!snapshot?.current || typeof snapshot.current !== 'object' || Array.isArray(snapshot.current)) throw new Error('Invalid report');
       data = snapshot;
       status.textContent = '';
       status.hidden = true;
