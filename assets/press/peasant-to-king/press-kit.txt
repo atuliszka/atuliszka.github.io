@@ -1,0 +1,82 @@
+PEASANT TO KING — PRESS KIT
+
+Last updated: 8 October 2026
+
+Start with a field, build a medieval economy, and rise from serf to King.
+
+AT A GLANCE
+Game: Peasant to King
+Google Play title: Peasant to King: Medieval Sim
+Developer: Agatio Games, solo developer based in Poland
+Platform: Android, portrait, single-player
+Global release: 5 September 2026
+Language: English; additional translations planned for late 2026
+Genre: Medieval incremental adventure; farming and economy management
+Price: Free download with optional in-app purchases and rewarded ads
+Content rating: Everyone (Google Play)
+Google Play: https://play.google.com/store/apps/details?id=com.peasanttoking.game
+Game page: https://agatiogames.pl/games/peasant-to-king/
+Press kit: https://agatiogames.pl/games/peasant-to-king/press/
+Contact: development@agatiogames.pl
+
+SHORT DESCRIPTION
+Peasant to King is a medieval incremental adventure for Android. Work your first fields, hire workers and trade your way into a growing kingdom. Farming expands into crafting, overseas commerce, expeditions and settlement building, with earlier production continuing as you rise from serf to King.
+
+FULL DESCRIPTION
+Peasant to King begins with the work of a single farmer: ploughing, sowing, watering and harvesting. Sell grain at changing market prices, improve your tools and hire workers to take over the daily labour.
+
+Each promotion opens another part of the world. Develop an estate, reclaim regions, trade overseas and lead expeditions. Town defense and hands-on challenges eventually give way to a settlement of your own, before Ambervale's farms, workshops and stables carry the journey toward King.
+
+Your progress builds on what came before. Earlier systems keep producing through promotions, with no prestige reset. Warm painted scenery and crisp pixel-art objects give this growing economy the feel of a lived-in medieval world.
+
+FEATURES
+- From manual work to automation: begin by tending fields yourself, then hire workers and grow production.
+- An economy that grows with you: connect farming, crafting, changing market prices and overseas trade.
+- A widening adventure: reclaim four Realm regions, lead expeditions, defend a town and build a settlement on the road to King.
+- Progress that lasts: promotions add new opportunities while earlier systems continue producing, without a prestige reset.
+- A warm medieval world: softly painted scenery and crisp pixel-art buildings, tools and resources in a portrait interface.
+
+PRICING AND CONNECTIVITY
+Free to download, with optional rewarded ads and in-app purchases. There are no forced interstitial ads. The Supporter Pack is a one-time permanent purchase that removes ads and makes eligible reward boosts free. Consumable Labour Writ packs provide resource rewards. Google Play displays local purchase prices.
+
+The campaign can be played offline. Ordinary offline production accumulates for up to six hours, subject to storage limits. Ads, purchases and optional Google Play Games cloud synchronization require online services.
+
+ABOUT AGATIO GAMES
+Agatio Games is a solo game developer based in Poland, making mobile games about building, managing and progressing at your own pace. Find Peasant to King and the studio's other games at agatiogames.pl (https://agatiogames.pl/).
+
+SCREENSHOTS
+Original 540 × 960 PNGs in progression order. This selection combines archived gameplay captures and desktop gameplay renders.
+
+screenshots/01-peasant-to-king-farm.png: Tend your fields, hire workers and grow the Farm.
+screenshots/01b-peasant-to-king-farm-upgrades.png: Grow a second field and improve your tools and grain storage.
+screenshots/02-peasant-to-king-market.png: Sell grain at changing market prices and invest in upgrades.
+screenshots/03-peasant-to-king-estate.png: Mine ore, smelt bars and forge weapons at the Estate.
+screenshots/03b-peasant-to-king-realm-combat.png: Militia fight bandits as you reclaim Ashen March.
+screenshots/04-peasant-to-king-sea-trade.png: Trade with distant kingdoms through your Port and fleet.
+screenshots/05-peasant-to-king-western-town.png: Improve Western Town's buildings to strengthen its defenses.
+screenshots/06-peasant-to-king-flooded-valley.png: Recruit engineers and restore a flooded valley along the Knight's journey.
+screenshots/07-peasant-to-king-ambervale.png: Develop Ambervale as your journey approaches King.
+screenshots/08-peasant-to-king-settlement.png: A developed Settlement supports Ambervale's growing population.
+
+LOGOS AND ARTWORK
+peasant-to-king-icon.png: Game icon
+peasant-to-king-logo-transparent.png: Transparent title logo
+peasant-to-king-feature-graphic.png: Feature graphic
+key-art/01-hillside-farm.png: Hillside farm
+key-art/02-open-ground-harvest.png: Open-ground harvest
+key-art/03-barn-interior.png: Barn interior
+key-art/04-market-square.png: Market square
+key-art/05-dockside-trade.png: Dockside trade
+key-art/06-freight-road-junction.png: Freight-road junction
+
+The six key-art pieces are promotional illustrations, separate from gameplay screenshots.
+
+TRAILER
+Download the supplied MP4 separately: https://agatiogames.pl/assets/press/peasant-to-king/peasant-to-king-trailer.mp4
+YouTube trailer: https://www.youtube.com/watch?v=SHU_m5YHXPA
+
+MEDIA USE AND CREDIT
+The images and trailer supplied in this press kit may be used in articles, reviews, videos and streams covering Peasant to King. Please credit Agatio Games. For other uses, contact development@agatiogames.pl.
+
+CONTACT
+For coverage, interviews and questions about the game: development@agatiogames.pl

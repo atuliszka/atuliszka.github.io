@@ -1,6 +1,18 @@
 {
   "current": {
     "data_from": "2026-08-21",
+    "data_through": "2026-10-09",
+    "players_in_the_journey": 9477,
+    "fields_harvested_manually": 639875,
+    "swords_forged_by_hand": 2772862,
+    "kingdom_contracts_fulfilled": 202045,
+    "land_events_completed": 3576,
+    "eastern_town_siege_days_passed": 1501,
+    "great_tunnels_built": 15,
+    "settlements_started": 11
+  },
+  "previous": {
+    "data_from": "2026-08-21",
     "data_through": "2026-10-04",
     "players_in_the_journey": 7708,
     "fields_harvested_manually": 553518,
@@ -11,36 +23,24 @@
     "great_tunnels_built": 14,
     "settlements_started": 8
   },
-  "previous": {
-    "data_from": "2026-08-21",
-    "data_through": "2026-10-03",
-    "players_in_the_journey": 7084,
-    "fields_harvested_manually": 507157,
-    "swords_forged_by_hand": 2161831,
-    "kingdom_contracts_fulfilled": 146420,
-    "land_events_completed": 2590,
-    "eastern_town_siege_days_passed": 1099,
-    "great_tunnels_built": 12,
-    "settlements_started": 5
-  },
   "players_by_rank": {
-    "data_through": "2026-10-04",
+    "data_through": "2026-10-09",
     "counts": {
-      "Serf": 1524,
-      "Peasant": 1448,
-      "Farmer": 482,
-      "Steward": 1004,
-      "Landowner": 689,
-      "Warden": 497,
-      "Bailiff": 461,
-      "Castellan": 307,
-      "Merchant": 869,
-      "Gentleman": 351,
-      "Knight": 20,
-      "Baron": 8,
+      "Serf": 1726,
+      "Peasant": 1678,
+      "Farmer": 605,
+      "Steward": 1162,
+      "Landowner": 832,
+      "Warden": 620,
+      "Bailiff": 595,
+      "Castellan": 471,
+      "Merchant": 1037,
+      "Gentleman": 437,
+      "Knight": 27,
+      "Baron": 11,
       "Duke": 0,
       "King": 0,
-      "Unknown": 46
+      "Unknown": 276
     }
   },
   "presentation": {
