@@ -43,7 +43,7 @@ function rankRows(report) {
     .map(([rank, players]) => ({ rank, players }));
 }
 function rankPercentages(rows) {
-  const known = rows.filter(row => !/^(Unknown|King)$/i.test(row.rank.trim()));
+  const known = rows.filter(row => !/^Unknown$/i.test(row.rank.trim()));
   const result = new Map();
   if (!known.length || known.some(row => !isTotal(row.players))) return result;
   const total = known.reduce((sum, row) => sum + row.players, 0);
@@ -244,10 +244,7 @@ function init(section) {
         const details = document.createElement('dd');
         const count = document.createElement('span');
         count.className = 'community-rank-count';
-        const deferred = /^King$/i.test(row.rank.trim());
-        if (deferred) count.className += ' community-rank-future';
-        count.textContent = deferred
-          ? 'Not yet available' : isTotal(row.players) ? format.format(row.players) : 'Unavailable';
+        count.textContent = isTotal(row.players) ? format.format(row.players) : 'Unavailable';
         details.append(count);
         const percentage = percentages.get(row);
         if (percentage !== undefined) {
