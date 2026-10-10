@@ -152,7 +152,7 @@ function init(section) {
       available = true;
       line.querySelector('[data-rank-count]').textContent = format.format(total);
       line.querySelector('[data-rank-story]').textContent = rank === 'Journey'
-        ? (total === 1 ? ' has ventured beyond the fields.' : ' have ventured beyond the fields.')
+        ? (total === 1 ? ' has ventured beyond.' : ' have ventured beyond.')
         : rank === 'King'
         ? (total === 1 ? ' King has finished the journey.' : ' Kings have finished the journey.')
         : (total === 1 ? ' Peasant is still in the fields.' : ' Peasants are still in the fields.');
