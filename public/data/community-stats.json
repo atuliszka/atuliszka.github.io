@@ -39,7 +39,7 @@
       "Knight": 31,
       "Baron": 10,
       "Duke": 3,
-      "King": 1,
+      "King": 0,
       "Unknown": 68
     }
   },
