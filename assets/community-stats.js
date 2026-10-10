@@ -142,12 +142,18 @@ function init(section) {
       let total = counts?.[rank];
       if (rank === 'Peasant') {
         total = isTotal(counts?.Serf) && isTotal(total) ? counts.Serf + total : null;
+      } else if (rank === 'Journey') {
+        const rows = rankRows(data.players_by_rank).filter(row => !['Serf', 'Peasant', 'King'].includes(row.rank));
+        total = rows.length && rows.every(row => isTotal(row.players))
+          ? rows.reduce((sum, row) => sum + row.players, 0) : null;
       }
       line.hidden = !isTotal(total);
       if (line.hidden) return;
       available = true;
       line.querySelector('[data-rank-count]').textContent = format.format(total);
-      line.querySelector('[data-rank-story]').textContent = rank === 'King'
+      line.querySelector('[data-rank-story]').textContent = rank === 'Journey'
+        ? (total === 1 ? ' player has ventured beyond the fields.' : ' players have ventured beyond the fields.')
+        : rank === 'King'
         ? (total === 1 ? ' King has finished the journey.' : ' Kings have finished the journey.')
         : (total === 1 ? ' Peasant is still in the fields.' : ' Peasants are still in the fields.');
     });

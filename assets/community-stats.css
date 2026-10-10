@@ -55,7 +55,7 @@
 .home-hero-grid > .community-compact { grid-area: stats; margin-top: 0; min-width: 0; }
 .home-hero-grid > .hero-trailer { grid-area: trailer; }
 @media (min-width: 1000px) {
-  .home-hero-grid { grid-template-columns: minmax(0,1.1fr) minmax(340px,1fr) minmax(0,1fr); grid-template-areas: "copy stats trailer"; gap: 32px; }
+  .home-hero-grid { grid-template-columns: minmax(0,1.1fr) minmax(370px,1fr) minmax(0,1fr); grid-template-areas: "copy stats trailer"; gap: 32px; }
   .home-hero-grid > .community-compact { padding-left: 28px; border-left: 1px solid color-mix(in srgb,var(--accent) 25%,transparent); }
   .home-hero-grid .community-grid { grid-template-columns: 1fr; gap: 24px; }
   .home-hero-grid .community-card dd { font-size: 1.8rem; }
@@ -97,18 +97,15 @@
 .community-hero-rank > span:last-child { min-width: 0; }
 .community-hero-rank strong { color: var(--gold); font-weight: 800; font-variant-numeric: tabular-nums; }
 .community-hero-rank-icon { flex: 0 0 26px; height: 28px; background: url("games/grain_icon.png") center / contain no-repeat; }
+.community-hero-rank-journey .community-hero-rank-icon { background-image: url("rank-journey.svg"); }
 .community-hero-rank-king strong { color: #ffe6a0; text-shadow: 0 0 16px #ffd65c45; }
 .community-hero-rank-king .community-hero-rank-icon { background-image: url("rank-crown.svg"); transform: rotate(-12deg); filter: drop-shadow(0 2px 5px #ffd65c40); }
 .community-hero-challenge { color: #ffe6a0; font-size: .88rem; font-weight: 650; line-height: 1.55; text-decoration-color: #ffd65c65; text-underline-offset: 4px; }
 .community-hero-challenge:hover { color: var(--gold); }
-@media (min-width: 761px) and (max-width: 999px) {
-  .community-hero-journey:not([hidden]) { grid-template-columns: repeat(2,minmax(0,1fr)); }
-  .community-hero-challenge { grid-column: 1 / -1; }
+@media (max-width: 999px) {
+  .community-hero-rank-journey:not([hidden]) { font-size: .84rem; gap: 8px; }
 }
 @media (max-width: 760px) {
   .community-hero-journey { margin-top: 0; padding: 18px 16px; }
-  .community-hero-journey:not([hidden]) { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
-  .community-hero-rank:not([hidden]) { flex-direction: column; align-items: center; gap: 6px; text-align: center; }
-  .community-hero-rank-icon { flex-basis: auto; width: 28px; }
-  .community-hero-challenge { grid-column: 1 / -1; text-align: center; }
+  .community-hero-challenge { text-align: center; }
 }
