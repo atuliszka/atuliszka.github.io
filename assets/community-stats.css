@@ -55,7 +55,7 @@
 .home-hero-grid > .community-compact { grid-area: stats; margin-top: 0; min-width: 0; }
 .home-hero-grid > .hero-trailer { grid-area: trailer; }
 @media (min-width: 1000px) {
-  .home-hero-grid { grid-template-columns: minmax(0,1.25fr) minmax(190px,.8fr) minmax(0,1fr); grid-template-areas: "copy stats trailer"; gap: 32px; }
+  .home-hero-grid { grid-template-columns: minmax(0,1.1fr) minmax(340px,1fr) minmax(0,1fr); grid-template-areas: "copy stats trailer"; gap: 32px; }
   .home-hero-grid > .community-compact { padding-left: 28px; border-left: 1px solid color-mix(in srgb,var(--accent) 25%,transparent); }
   .home-hero-grid .community-grid { grid-template-columns: 1fr; gap: 24px; }
   .home-hero-grid .community-card dd { font-size: 1.8rem; }
