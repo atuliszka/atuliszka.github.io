@@ -50,7 +50,7 @@
       "swords_forged_by_hand",
       "kingdom_contracts_fulfilled"
     ],
-    "max_projection_days": 7,
+    "max_projection_days": 20,
     "estimate_label": "Estimated community totals · updated weekly"
   }
 }

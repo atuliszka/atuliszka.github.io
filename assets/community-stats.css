@@ -93,13 +93,13 @@
 .community-hero-journey { margin-top: 24px; padding-top: 20px; border-top: 1px solid #ffd65c26; }
 .community-hero-journey:not([hidden]) { display: grid; gap: 16px; }
 .community-hero-rank { margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.55; }
-.community-hero-rank:not([hidden]) { display: flex; align-items: flex-start; gap: 10px; }
+.community-hero-rank:not([hidden]) { display: flex; align-items: center; gap: 10px; }
 .community-hero-rank > span:last-child { min-width: 0; }
 .community-hero-rank strong { color: var(--gold); font-weight: 800; font-variant-numeric: tabular-nums; }
-.community-hero-rank-icon { flex: 0 0 26px; height: 28px; background: url("games/grain_icon.png") center / contain no-repeat; }
-.community-hero-rank-journey .community-hero-rank-icon { background-image: url("rank-journey.svg"); }
+.community-hero-rank-icon { flex: 0 0 26px; height: 28px; background: url("rank-fields.svg?v=3f6b0dc308") center / contain no-repeat; filter: drop-shadow(0 1px 2px #0005); }
+.community-hero-rank-journey .community-hero-rank-icon { background-image: url("rank-journey.svg?v=6d4d5463e0"); }
 .community-hero-rank-king strong { color: #ffe6a0; text-shadow: 0 0 16px #ffd65c45; }
-.community-hero-rank-king .community-hero-rank-icon { background-image: url("rank-crown.svg"); transform: rotate(-12deg); filter: drop-shadow(0 2px 5px #ffd65c40); }
+.community-hero-rank-king .community-hero-rank-icon { background-image: url("rank-king.svg?v=1fdb3c92a8"); }
 .community-hero-challenge { color: #ffe6a0; font-size: .88rem; font-weight: 650; line-height: 1.55; text-decoration-color: #ffd65c65; text-underline-offset: 4px; }
 .community-hero-challenge:hover { color: var(--gold); }
 @media (max-width: 999px) {

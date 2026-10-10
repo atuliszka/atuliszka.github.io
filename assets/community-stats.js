@@ -10,7 +10,7 @@ const counters = [
   ['great_tunnels_built', 'Great Tunnels built'],
   ['settlements_started', 'Settlements commissioned']
 ];
-const activityKeys = new Set(counters.slice(1, 4).map(([key]) => key));
+const activityKeys = new Set(counters.slice(0, 4).map(([key]) => key));
 const isTotal = value => Number.isSafeInteger(value) && value >= 0;
 function calendarDay(value) {
   if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return NaN;
@@ -152,7 +152,7 @@ function init(section) {
       available = true;
       line.querySelector('[data-rank-count]').textContent = format.format(total);
       line.querySelector('[data-rank-story]').textContent = rank === 'Journey'
-        ? (total === 1 ? ' player has ventured beyond the fields.' : ' players have ventured beyond the fields.')
+        ? (total === 1 ? ' has ventured beyond the fields.' : ' have ventured beyond the fields.')
         : rank === 'King'
         ? (total === 1 ? ' King has finished the journey.' : ' Kings have finished the journey.')
         : (total === 1 ? ' Peasant is still in the fields.' : ' Peasants are still in the fields.');
