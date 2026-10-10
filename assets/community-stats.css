@@ -20,9 +20,8 @@
 .community-rank-count { display: block; color: var(--accent); font-family: "Bricolage Grotesque",sans-serif; font-size: 2rem; font-weight: 800; font-variant-numeric: tabular-nums; }
 .community-rank-king { background: radial-gradient(ellipse at 35% 58%,#ffd65c12,transparent 70%); border-radius: 14px; }
 .community-rank-king dt { color: #ffe6a0; }
-.community-rank-king dd { margin-top: 38px; }
-.community-royal-count { position: relative; display: inline-block; color: #ffe6a0; text-shadow: 0 0 22px #ffd65c45; }
-.community-rank-crown { position: absolute; width: 38px; height: 29px; left: 50%; top: -25px; transform: translateX(-50%) rotate(-12deg); background: url("rank-crown.svg") center / contain no-repeat; filter: drop-shadow(0 2px 5px #ffd65c40); pointer-events: none; }
+.community-royal-count { display: inline-flex; align-items: center; gap: 8px; vertical-align: top; color: #ffe6a0; text-shadow: 0 0 22px #ffd65c45; }
+.community-rank-crown { flex: 0 0 30px; width: 30px; height: 24px; transform: rotate(-12deg); background: url("rank-crown.svg") center / contain no-repeat; filter: drop-shadow(0 2px 5px #ffd65c40); pointer-events: none; }
 .community-rank-future { font-family: inherit; font-size: 1rem; font-weight: 500; line-height: 1.5; color: var(--muted); }
 .community-rank-share { display: block; margin-top: 8px; color: var(--muted); font-size: 1rem; }
 .community-rank-track { display: block; height: 5px; margin-top: 14px; border-radius: 4px; background: #ffffff15; overflow: hidden; }

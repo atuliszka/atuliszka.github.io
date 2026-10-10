@@ -138,14 +138,18 @@ function init(section) {
     let available = false;
     journey.querySelectorAll('[data-stats-hero-rank]').forEach(line => {
       const rank = line.dataset.statsHeroRank;
-      const total = data.players_by_rank?.counts?.[rank];
+      const counts = data.players_by_rank?.counts;
+      let total = counts?.[rank];
+      if (rank === 'Peasant') {
+        total = isTotal(counts?.Serf) && isTotal(total) ? counts.Serf + total : null;
+      }
       line.hidden = !isTotal(total);
       if (line.hidden) return;
       available = true;
       line.querySelector('[data-rank-count]').textContent = format.format(total);
       line.querySelector('[data-rank-story]').textContent = rank === 'King'
         ? (total === 1 ? ' King has finished the journey.' : ' Kings have finished the journey.')
-        : (total === 1 ? ' Serf is still in the fields.' : ' Serfs are still in the fields.');
+        : (total === 1 ? ' Peasant is still in the fields.' : ' Peasants are still in the fields.');
     });
     journey.hidden = !available;
   }
@@ -274,7 +278,7 @@ function init(section) {
           const crown = document.createElement('span');
           crown.className = 'community-rank-crown';
           crown.setAttribute('aria-hidden', 'true');
-          royalCount.append(crown, digits);
+          royalCount.append(digits, crown);
           count.replaceChildren(royalCount);
         }
         details.append(count);
