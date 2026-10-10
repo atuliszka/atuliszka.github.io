@@ -116,6 +116,7 @@ function init(section) {
   const grid = section.querySelector('[data-stats-grid]');
   const ranks = section.querySelector('[data-stats-ranks]');
   const retry = section.querySelector('[data-stats-retry]');
+  const journey = section.querySelector('[data-stats-journey]');
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   const startRankScroll = ranks ? autoScrollRanks(ranks, motion) : () => {};
   if (ranks && 'ResizeObserver' in window) new ResizeObserver(startRankScroll).observe(ranks);
@@ -132,6 +133,22 @@ function init(section) {
     grid.append(card);
     return { key, card, value, seen: false, visible: false, frame: 0 };
   });
+  function paintJourney() {
+    if (!journey) return;
+    let available = false;
+    journey.querySelectorAll('[data-stats-hero-rank]').forEach(line => {
+      const rank = line.dataset.statsHeroRank;
+      const total = data.players_by_rank?.counts?.[rank];
+      line.hidden = !isTotal(total);
+      if (line.hidden) return;
+      available = true;
+      line.querySelector('[data-rank-count]').textContent = format.format(total);
+      line.querySelector('[data-rank-story]').textContent = rank === 'King'
+        ? (total === 1 ? ' King has finished the journey.' : ' Kings have finished the journey.')
+        : (total === 1 ? ' Serf is still in the fields.' : ' Serfs are still in the fields.');
+    });
+    journey.hidden = !available;
+  }
   function paint(item, animate = false) {
     cancelAnimationFrame(item.frame);
     item.frame = 0;
@@ -206,6 +223,7 @@ function init(section) {
       item.value.removeAttribute('aria-label');
     });
     ranks?.replaceChildren();
+    if (journey) journey.hidden = true;
     retry.hidden = true;
     status.hidden = false;
     status.textContent = 'Loading the community ledger…';
@@ -223,6 +241,7 @@ function init(section) {
       }
       if (!snapshot?.current || typeof snapshot.current !== 'object' || Array.isArray(snapshot.current)) throw new Error('Invalid report');
       data = snapshot;
+      paintJourney();
       status.textContent = '';
       status.hidden = true;
       if (ranks) {
@@ -232,19 +251,32 @@ function init(section) {
       const rankObserver = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
         entries.forEach(entry => {
           if (!entry.isIntersecting) return;
-          entry.target.className = 'community-rank is-visible';
+          entry.target.classList.add('is-visible');
           rankObserver.unobserve(entry.target);
         });
       }, { threshold: .3 }) : null;
       for (const row of rows) {
         const entry = document.createElement('div');
         entry.className = 'community-rank';
+        const isKing = /^King$/i.test(row.rank.trim());
+        if (isKing) entry.classList.add('community-rank-king');
         const label = document.createElement('dt');
         label.textContent = row.rank;
         const details = document.createElement('dd');
         const count = document.createElement('span');
         count.className = 'community-rank-count';
         count.textContent = isTotal(row.players) ? format.format(row.players) : 'Unavailable';
+        if (isKing && isTotal(row.players)) {
+          const royalCount = document.createElement('span');
+          royalCount.className = 'community-royal-count';
+          const digits = document.createElement('span');
+          digits.textContent = count.textContent;
+          const crown = document.createElement('span');
+          crown.className = 'community-rank-crown';
+          crown.setAttribute('aria-hidden', 'true');
+          royalCount.append(crown, digits);
+          count.replaceChildren(royalCount);
+        }
         details.append(count);
         const percentage = percentages.get(row);
         if (percentage !== undefined) {
@@ -264,7 +296,7 @@ function init(section) {
         entry.append(label, details);
         ranks.append(entry);
         if (rankObserver) rankObserver.observe(entry);
-        else entry.className = 'community-rank is-visible';
+        else entry.classList.add('is-visible');
       }
       section.querySelector('[data-ranks-empty]').hidden = rows.length > 0;
       startRankScroll();
