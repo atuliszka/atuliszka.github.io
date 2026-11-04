@@ -60,18 +60,22 @@ function journeyCounts(data, total) {
   if (!isTotal(ranked)) return null;
   // Players absent from the rank snapshot also belong in the fields group.
   groups.Peasant += Math.max(0, recorded - ranked);
-  const base = Math.max(recorded, ranked);
-  if (!base) return { Peasant: total, Journey: 0, King: 0 };
+  // Only fields and beyond receive estimates; King stays at its recorded count.
+  // During the initial count-up it cannot exceed the animated headline either.
+  const king = Math.min(total, counts.King);
+  const target = total - king;
+  const base = Math.max(recorded, ranked) - counts.King;
+  if (!base) return { Peasant: target, Journey: 0, King: king };
   // Largest remainders keep the integer groups proportional and their sum exact.
-  const shares = Object.entries(groups).map(([rank, count]) => {
-    const exact = total * (count / base);
+  const shares = Object.entries(groups).filter(([rank]) => rank !== 'King').map(([rank, count]) => {
+    const exact = target * (count / base);
     const value = Math.floor(exact);
     return { rank, value, remainder: exact - value };
   });
-  const remaining = total - shares.reduce((sum, share) => sum + share.value, 0);
+  const remaining = target - shares.reduce((sum, share) => sum + share.value, 0);
   shares.sort((a, b) => b.remainder - a.remainder);
   for (let index = 0; index < remaining; index++) shares[index].value++;
-  return Object.fromEntries(shares.map(({ rank, value }) => [rank, value]));
+  return { ...Object.fromEntries(shares.map(({ rank, value }) => [rank, value])), King: king };
 }
 function rankPercentages(rows) {
   const known = rows.filter(row => !/^Unknown$/i.test(row.rank.trim()));
