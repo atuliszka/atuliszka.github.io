@@ -42,6 +42,37 @@ function rankRows(report) {
     .filter(([rank]) => !/^Unknown$/i.test(rank.trim()))
     .map(([rank, players]) => ({ rank, players }));
 }
+function journeyCounts(data, total) {
+  const counts = data.players_by_rank?.counts;
+  const recorded = data.current?.players_in_the_journey;
+  const rows = rankRows(data.players_by_rank);
+  const unknown = counts?.Unknown ?? 0;
+  if (!isTotal(total) || !isTotal(recorded) || !isTotal(counts?.Serf) ||
+      !isTotal(counts?.Peasant) || !isTotal(counts?.King) || !isTotal(unknown) ||
+      rows.some(row => !isTotal(row.players))) return null;
+  const groups = {
+    Peasant: counts.Serf + counts.Peasant + unknown,
+    Journey: rows.filter(row => !['Serf', 'Peasant', 'King'].includes(row.rank))
+      .reduce((sum, row) => sum + row.players, 0),
+    King: counts.King
+  };
+  const ranked = groups.Peasant + groups.Journey + groups.King;
+  if (!isTotal(ranked)) return null;
+  // Players absent from the rank snapshot also belong in the fields group.
+  groups.Peasant += Math.max(0, recorded - ranked);
+  const base = Math.max(recorded, ranked);
+  if (!base) return { Peasant: total, Journey: 0, King: 0 };
+  // Largest remainders keep the integer groups proportional and their sum exact.
+  const shares = Object.entries(groups).map(([rank, count]) => {
+    const exact = total * (count / base);
+    const value = Math.floor(exact);
+    return { rank, value, remainder: exact - value };
+  });
+  const remaining = total - shares.reduce((sum, share) => sum + share.value, 0);
+  shares.sort((a, b) => b.remainder - a.remainder);
+  for (let index = 0; index < remaining; index++) shares[index].value++;
+  return Object.fromEntries(shares.map(({ rank, value }) => [rank, value]));
+}
 function rankPercentages(rows) {
   const known = rows.filter(row => !/^Unknown$/i.test(row.rank.trim()));
   const result = new Map();
@@ -133,20 +164,13 @@ function init(section) {
     grid.append(card);
     return { key, card, value, seen: false, visible: false, frame: 0 };
   });
-  function paintJourney() {
+  function paintJourney(totalPlayers) {
     if (!journey) return;
+    const groups = journeyCounts(data, totalPlayers);
     let available = false;
     journey.querySelectorAll('[data-stats-hero-rank]').forEach(line => {
       const rank = line.dataset.statsHeroRank;
-      const counts = data.players_by_rank?.counts;
-      let total = counts?.[rank];
-      if (rank === 'Peasant') {
-        total = isTotal(counts?.Serf) && isTotal(total) ? counts.Serf + total : null;
-      } else if (rank === 'Journey') {
-        const rows = rankRows(data.players_by_rank).filter(row => !['Serf', 'Peasant', 'King'].includes(row.rank));
-        total = rows.length && rows.every(row => isTotal(row.players))
-          ? rows.reduce((sum, row) => sum + row.players, 0) : null;
-      }
+      const total = groups?.[rank];
       line.hidden = !isTotal(total);
       if (line.hidden) return;
       available = true;
@@ -159,11 +183,11 @@ function init(section) {
     });
     journey.hidden = !available;
   }
-  function paint(item, animate = false) {
+  function paint(item, animate = false, now = Date.now()) {
     cancelAnimationFrame(item.frame);
     item.frame = 0;
     if (!data) return;
-    const result = counterValue(data, item.key, Date.now(), motion.matches);
+    const result = counterValue(data, item.key, now, motion.matches);
     const finalText = result.value === null ? 'Unavailable' : format.format(result.value);
     if (!animate && item.lastText === finalText) return;
     item.lastText = finalText;
@@ -172,14 +196,18 @@ function init(section) {
     const digits = document.createElement('span');
     digits.setAttribute('aria-hidden', 'true');
     item.value.replaceChildren(digits);
+    function render(value) {
+      digits.textContent = value === null ? 'Unavailable' : format.format(value);
+      if (item.key === 'players_in_the_journey') paintJourney(value);
+    }
     if (!animate || motion.matches || result.value === null) {
-      digits.textContent = finalText;
+      render(result.value);
       return;
     }
     const start = performance.now();
     function tick(now) {
       const progress = Math.min(1, (now - start) / 750);
-      digits.textContent = format.format(Math.floor(result.value * (1 - (1 - progress) ** 3)));
+      render(Math.floor(result.value * (1 - (1 - progress) ** 3)));
       if (progress < 1) item.frame = requestAnimationFrame(tick);
       else item.frame = 0;
     }
@@ -188,9 +216,10 @@ function init(section) {
   function refresh() {
     clearTimeout(timer);
     if (!data || !visible || document.hidden) return;
+    const now = Date.now();
     cards.forEach(item => {
       if (!item.visible || item.frame) return;
-      paint(item, !item.seen);
+      paint(item, !item.seen, now);
       item.seen = true;
     });
     if (!motion.matches && cards.some(item => item.visible && counterValue(data, item.key, Date.now()).growing)) {
@@ -251,7 +280,6 @@ function init(section) {
       }
       if (!snapshot?.current || typeof snapshot.current !== 'object' || Array.isArray(snapshot.current)) throw new Error('Invalid report');
       data = snapshot;
-      paintJourney();
       status.textContent = '';
       status.hidden = true;
       if (ranks) {
@@ -326,5 +354,5 @@ function init(section) {
   load();
 }
 
-if (typeof module !== "undefined") module.exports = { counters, isTotal, calendarDay, counterValue, rankRows, rankPercentages, autoScrollRanks };
+if (typeof module !== "undefined") module.exports = { counters, isTotal, calendarDay, counterValue, rankRows, journeyCounts, rankPercentages, autoScrollRanks };
 })();
